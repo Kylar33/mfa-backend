@@ -18,6 +18,7 @@ models.Base.metadata.create_all(bind=engine)
 origins = [
     "http://localhost:5173",  # URL del frontend en desarrollo
     "http://localhost:3000",
+    "https://react-frontend-proyecto-fecc73666337.herokuapp.com"
 ]
 
 app = FastAPI(title="Fitness API")
