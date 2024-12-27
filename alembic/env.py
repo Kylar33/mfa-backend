@@ -5,6 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
+from config.database import Base
+
 # Esta es la parte que necesitas agregar/modificar
 import sys
 import os
