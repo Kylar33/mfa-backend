@@ -10,11 +10,13 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from models import *
-from database import DATABASE_URL  # Importa tu URL de base de datos
+# from database import DATABASE_URL  # Importa tu URL de base de datos
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+DATABASE_URL = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql://', 1)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -42,7 +44,7 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = SQLALCHEMY_DATABASE_URL  # Usa tu URL de base de datos
+    url = DATABASE_URL  # Usa tu URL de base de datos
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -62,7 +64,7 @@ def run_migrations_online() -> None:
 
     """
     configuration = config.get_section(config.config_ini_section)
-    configuration["sqlalchemy.url"] = SQLALCHEMY_DATABASE_URL  # Usa tu URL de base de datos
+    configuration["sqlalchemy.url"] = DATABASE_URL  # Usa tu URL de base de datos
     connectable = engine_from_config(
         configuration,
         prefix="sqlalchemy.",

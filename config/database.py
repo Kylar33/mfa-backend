@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-DATABASE_URL = os.environ.get('DATABASE_URL')  # Asegúrate de que DATABASE_URL está configurado en las variables de entorno.
+DATABASE_URL = os.environ.get('DATABASE_URL').replace('postgres://', 'postgresql://', 1)  # Asegúrate de que DATABASE_URL está configurado en las variables de entorno.
 
 # Crear el motor de SQLAlchemy
 engine = create_engine(DATABASE_URL)
